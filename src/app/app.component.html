@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <app-user-form (userAdd)="addUser($event)"></app-user-form>
+    </div>
+    <div class="col-md-8">
+      <div class="mt-5">
+        <div>
+          <h2 class="mb-3">User List</h2>
+          <div class="search">
+            <form>
+              <label for="search">Search by Name  &nbsp;&nbsp;&nbsp;</label>
+                <input type="text"
+                    placeholder=" Search"
+                    name="search">
+            </form>
+        </div>
+        </div>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Sr.</th>
+              <th scope="col">Name</th>
+              <th scope="col">Gender</th>
+              <th scope="col">Email</th>
+              <th scope="col">Mobile</th>
+              <th scope="col">About me</th>
+              <th scope="col">Actions</th>
+            </tr>
+          </thead>
+        </table>
+        <div *ngFor="let user of users; index as sr">
+          <app-user-data [user]="user" [sr] ="sr" (userDelete)="deleteUser($event)"></app-user-data>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

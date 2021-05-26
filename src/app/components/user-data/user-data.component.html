@@ -1,0 +1,15 @@
+
+<table class="table">
+    <tbody>
+        <td>{{sr+1}}</td>
+        <td>{{ user.name }}</td>
+        <td>{{ user.gender }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.mobile }}</td>
+        <td>{{ user.about }}</td>
+        <td>
+          <button class="btn btn-sm btn-primary" (click)="onEdit(user)">Edit</button>
+          <button class="btn btn-sm btn-danger" (click)="onDelete(user)">Delete</button>
+        </td>
+    </tbody>
+  </table>
