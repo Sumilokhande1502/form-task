@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from './User';
+import { User } from './User.model';
 
 @Component({
   selector: 'app-root',
@@ -9,34 +9,30 @@ import { User } from './User';
 export class AppComponent implements OnInit {
   title = 'Crud-App';
 
-  name:any;
-  gender:any;
-  email:any;
-  mobile:any;
-  about:any;
-
   public users:User[] = [];
 
   localItem:any;
 
-  // public formDetails: any = {
-  // name: '',
-  // email: '',
-  // mobile: '',
-  // about: '',
-  // gender: {
-  //   male : '',
-  //   female: ''
-  // }
-  // }
+  public formDetails: any = {
+  name: '',
+  gender: {
+    male : '',
+    female: ''
+  },
+  email: '',
+  mobile: '',
+  about: ''
+  
+  }
+  indexFetch: any;
 
   constructor() { 
     this.localItem = localStorage.getItem("users");
     if(this.localItem == null){
-      this.users = [];
+      this.formDetails = [];
     } 
     else{
-      this.users = JSON.parse(this.localItem);
+      this.formDetails = JSON.parse(this.localItem);
     }
   }
 
@@ -44,57 +40,53 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     // if(localStorage.getItem('users')){
     //  // console.log(JSON.parse(localStorage.getItem('users')) || '{}'); 
-    //  // this.users.push(JSON.parse(localStorage.getItem('data')));
+    //  // this.formDetails.push(JSON.parse(localStorage.getItem('data')));
     // }
   }
 
-  onSubmit() {
-    //this.users.push(this.user)
-    //localStorage.setItem("users", JSON.stringify(this.users));
-    // if(localStorage.getItem('data') === null || localStorage.getItem('data') == undefined) {
-    //   const userData = [];
-    //   userData.push(this.formDetails);
-    //   console.log(userData, 'details from Main compo');
-    //   localStorage.setItem('data', JSON.stringify(userData));
-    //   return userData;
-    // }
-    // else{
-    //   const userData = [];
-    //   this.formDetails.name = 'Sumit',
-    //   this.formDetails.gender = 'Male',
-    //   this.formDetails.email = 'abc@email',
-    //   this.formDetails.mobile = '2147198247',
-    //   this.formDetails.about = 'lorem',
-      
-    //   userData.push(this.formDetails);
-    //   console.log(userData, 'details from form compo');
-    //   localStorage.setItem('data', JSON.stringify(userData));
-    //   return userData;
-    // }
-    
-  }
+
   addUser(user:any){
     console.log(user);
-    this.users.push(user)
-    localStorage.setItem("users", JSON.stringify(this.users));
+    this.formDetails.push(user)
+    localStorage.setItem("users", JSON.stringify(this.formDetails));
 
   }
   deleteUser(user: any) {
     console.log(user);
-    const index = this.users.indexOf(user);
+    const index = this.formDetails.indexOf(user);
     console.log(index);
 
-    this.users.splice(index, 1);
-    localStorage.setItem('users', JSON.stringify(this.users));
+    this.formDetails.splice(index, 1);
+    localStorage.setItem('users', JSON.stringify(this.formDetails));
   }
 
-  updateUser(update:any){
-    console.log('User Updated');
-    console.log(update, 'update from modal');
+  updateUser(user:any){
+    // this.formDetails.filter(this.indexFetch == this.formDetails[this.indexFetch])
+  //   console.log(user);
+  //   console.log(this.indexFetch, 'from update function');
+  //  console.log(this.formDetails[this.indexFetch].name, user.name);
+  
+     this.formDetails[this.indexFetch].name = user.name
+     this.formDetails[this.indexFetch].gender = user.gender
+     this.formDetails[this.indexFetch].email = user.email
+     this.formDetails[this.indexFetch].mobile = user.mobile
+     this.formDetails[this.indexFetch].about = user.about
+
+      localStorage.setItem('users', JSON.stringify(this.formDetails));
+
     
   }
   
-  resetForm(user:User){
-    this.resetForm(user);
+  fetchData(user: any){
+    Object.keys(user).forEach((key) => {
+         this.formDetails['name'] = user['name'];
+         this.formDetails['gender'] = user['gender'];
+         this.formDetails['email'] = user['email'];
+         this.formDetails['mobile'] = user['mobile'];
+         this.formDetails['about'] = user['about'];
+    });
+    this.indexFetch = this.formDetails.indexOf(user);
+    console.log(this.indexFetch);
+
   }
 }
