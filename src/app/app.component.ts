@@ -87,6 +87,12 @@ export class AppComponent implements OnInit {
     this.users.splice(index, 1);
     localStorage.setItem('users', JSON.stringify(this.users));
   }
+
+  updateUser(update:any){
+    console.log('User Updated');
+    console.log(update, 'update from modal');
+    
+  }
   
   resetForm(user:User){
     this.resetForm(user);
