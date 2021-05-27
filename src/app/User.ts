@@ -1,8 +1,10 @@
-export class User {
-    sr!: number;
-    name!: string
-    gender!: {}
-    email!: string 
-    mobile!: number
-    about!: string
+export interface User {
+    name: string;
+    gender: {
+        male: string;
+        female: string;
+    }[];
+    email: string;
+    mobile: string;
+    about: string;
 }
