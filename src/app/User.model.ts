@@ -7,4 +7,5 @@ export interface User {
     email: string;
     mobile: string;
     about: string;
+    hobbies: string
 }
