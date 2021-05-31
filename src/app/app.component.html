@@ -60,7 +60,7 @@
               type="email"
               name="email" #email="ngModel"
               class="form-control" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
-              [(ngModel)]="formDetails.email" [email]="true"
+              [(ngModel)]="formDetails.email"
               required
             />
             <div *ngIf="email.errors &&(email.touched)" class ="alert alert-danger">
@@ -112,11 +112,11 @@
           <div class="btn-group">
             <button
               type="submit"
-              class="btn btn-primary mr-2" (click)="addUser(); userForm.reset()"
+              class="btn btn-primary mr-2" (click)="addUser()"
               >
               Submit
             </button>
-            <button type="reset" class="btn btn-primary ml-0" (click)="userForm.reset()">Reset</button>
+            <button type="button" class="btn btn-primary ml-0" (click)="userForm.reset()">Reset</button>
           </div>
         </form>
       </div>
@@ -233,11 +233,11 @@
           <div class="btn-group">
             <button
               type="submit"
-              class="btn btn-primary mr-2" (click)="updateUser(); userForm.reset()"
+              class="btn btn-primary mr-2" (click)="updateUser()"
             >
               Submit
             </button>
-            <button type="button" class="btn btn-secondary ml-0" (click)="cancelEdit(); userForm.reset()">Cancel</button>
+            <button type="reset" class="btn btn-secondary ml-0"(click)="userForm.reset()">Cancel</button>
           </div>
         </form>
       </div>

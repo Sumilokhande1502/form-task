@@ -46,8 +46,11 @@ export class AppComponent implements OnInit {
   }
 
   addUser() { 
-        this.formData.push(this.formDetails);
-        localStorage.setItem('users', JSON.stringify(this.formData));       
+   
+    
+    this.formData.push(this.formDetails);
+    console.log(this.formData);
+    localStorage.setItem('users', JSON.stringify(this.formData));       
   }
 
   deleteUser(user: any) {
@@ -61,6 +64,7 @@ export class AppComponent implements OnInit {
 
   fetchData(user: any) {
     this.appState = 'edit';
+
     Object.keys(user).forEach((key) => {
       this.formDetails['name'] = user['name'];
       this.formDetails['gender'] = user['gender'];
@@ -69,7 +73,7 @@ export class AppComponent implements OnInit {
       this.formDetails['about'] = user['about'];
       this.formDetails['hobbies'] = user['hobbies'];
     });
-  //  console.log(this.formDetails);
+  console.log(user, 'From FetchData');
     
     this.indexFetch = this.formData.indexOf(user);
     console.log(this.indexFetch);
@@ -81,7 +85,7 @@ export class AppComponent implements OnInit {
     this.formData[this.indexFetch].email = this.formDetails.email;
     this.formData[this.indexFetch].mobile = this.formDetails.mobile;
     this.formData[this.indexFetch].about = this.formDetails.about;
-    this.formData[this.indexFetch].hobbies = this.formDetails.hobbies;
+    this.formData[this.indexFetch].hobbies.hobbyList = this.formDetails.hobbies.hobbyList;
 
     localStorage.setItem('users', JSON.stringify(this.formData));
   }
@@ -102,8 +106,10 @@ export class AppComponent implements OnInit {
 
 cancelEdit(){
   this.appState = 'default';
- // this.formDetails.reset();
 }
 
+resetForm(){
+  this.formDetails = []
+}
 
 }
